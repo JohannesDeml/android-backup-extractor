@@ -1,32 +1,29 @@
-Android backup extractor
+Sony PC Companion backup extractor
 ========================
 
-Utility to extract and repack Android backups created with ```adb backup``` (ICS+). 
-Largely based on BackupManagerService.java from AOSP. 
+Utility to extract data from sony pc companion. Tutorial on how to use the program is over here: http://www.johannesdeml.com/blog/extract-data-sony-pc-companion-backup/
 
+For encrypted files (Encrypted with android not the companion) you will need to change your security settings and use the command line to run the program.
 Requires Java 7. Handling encrypted backups requires the JCE unlimited strength 
 jurisdiction policy.
 
 http://www.oracle.com/technetwork/java/javase/downloads/jce-7-download-432124.html
 
-Usage (Eclipse): 
+Commandline: java -jar restorData.jar <password>
+
+Usage (Intellij): 
 
 Download the latest version of Bouncy Castle Provider jar 
 (```bcprov-jdk15on-*.jar```) from here:
 
 http://www.bouncycastle.org/latest_releases.html
 
-Drop the latest Bouncy Castle jar in lib/, import in Eclipse and adjust 
-build path if necessary. Use the ```abe``` script to start the utility. 
-Syntax: 
+Drop the latest Bouncy Castle jar in lib/, import in intellij and adjust 
+build path if necessary. For building a jar artifact make sure to remove the signing information in bouncy castle (see readme in lib folder). 
+Syntax for running the jar: 
 
-	unpack:       abe unpack  <backup.ab> <backup.tar> [password]
-	pack:         abe pack    <backup.tar> <backup.ab> [password]
-	pack for 4.4: abe pack-kk <backup.tar> <backup.ab> [password]
-    (creates version 2 backups, compatible with Android 4.4.3)
-
-If the filename is `-`, then data is read from standard input or written to
-standard output.
+	extract data from fullbackupdata file:	java -jar restoreData.jar
+	extract data from encrypted fullbackupdata file: java -jar restoreData.jar <password>
 
 If the password is not given on the command line, then the environment variable
 `ABE_PASSWD` is tried. If you don't specify a password the backup archive won't
