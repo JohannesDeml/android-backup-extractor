@@ -7,42 +7,25 @@ import org.bouncycastle.jce.provider.BouncyCastleProvider;
 
 public class Main {
 
+    public static String VERSION = "v 1.4.0";
+
     public static void main(String[] args) {
         Security.addProvider(new BouncyCastleProvider());
 
-        if (args.length < 3) {
-            usage();
-
-            System.exit(1);
+        String backupFilename = "fullbackupdata";
+        String tarFilename = "restore.tar";
+        String password;
+        if (args.length >= 1) {
+            password = args[0];
+            System.out.println("Starting PC companion Backup extractor " + VERSION + " with password protection");
         }
-
-        String mode = args[0];
-        if (!"pack".equals(mode) && !"unpack".equals(mode) && !"pack-kk".equals(mode)) {
-            usage();
-
-            System.exit(1);
-        }
-
-        boolean unpack = "unpack".equals(mode);
-        String backupFilename = unpack ? args[1] : args[2];
-        String tarFilename = unpack ? args[2] : args[1];
-        String password = null;
-        if (args.length > 3) {
-            password = args[3];
-        }
-
-        if (password == null) {
+        else {
             /* if password is not given, try to read it from environment */
             password = System.getenv("ABE_PASSWD");
+            System.out.println("Starting PC companion Backup extractor " + VERSION + " without password protection");
         }
 
-        if (unpack) {
-            AndroidBackup.extractAsTar(backupFilename, tarFilename, password);
-        } else {
-            boolean isKitKat = "pack-kk".equals(mode);
-            AndroidBackup.packTar(tarFilename, backupFilename, password, isKitKat);
-        }
-
+        AndroidBackup.extractAsTar(backupFilename, tarFilename, password);
     }
 
     private static void usage() {
