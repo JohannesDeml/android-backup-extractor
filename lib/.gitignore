@@ -1,16 +1,2 @@
-# built application files
-*.apk
-*.ap_
-
-# files for the dex VM
-*.dex
-
-# Java class files
-*.class
-
-# generated files
-bin/
-gen/
-
-# Local configuration file (sdk path, etc)
-local.properties
+# Ignore bouncycastle lib, download the latest from here: https://www.bouncycastle.org/latest_releases.html
+bcprov*.jar
