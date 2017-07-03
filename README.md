@@ -1,7 +1,8 @@
 Sony PC Companion backup extractor
 ========================
 
-Utility to extract data from sony pc companion. Tutorial on how to use the program is over here: http://www.johannesdeml.com/blog/extract-data-sony-pc-companion-backup/
+Utility to extract data from sony pc companion. Tutorial on how to use the program is over here: http://www.johannesdeml.com/blog/extract-data-sony-pc-companion-backup/  
+Download the file: https://github.com/JohannesDeml/pc-companion-restore-data/releases
 
 For encrypted files (Encrypted with android not the companion) you will need to change your security settings and use the command line to run the program.
 Requires Java 7. Handling encrypted backups requires the JCE unlimited strength 
