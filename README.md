@@ -9,9 +9,9 @@ jurisdiction policy.
 
 http://www.oracle.com/technetwork/java/javase/downloads/jce-7-download-432124.html
 
-Commandline: java -jar restorData.jar <password>
+Commandline: `java -jar restoreData.jar [password]`
 
-Usage (Intellij): 
+# Build project with IntelliJ
 
 Download the latest version of Bouncy Castle Provider jar 
 (```bcprov-jdk15on-*.jar```) from here:
