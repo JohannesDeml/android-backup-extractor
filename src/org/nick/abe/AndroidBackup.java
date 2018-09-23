@@ -38,6 +38,7 @@ public class AndroidBackup {
     private static final int BACKUP_FILE_V2 = 2;
     private static final int BACKUP_FILE_V3 = 3;
     private static final int BACKUP_FILE_V4 = 4;
+    private static final int BACKUP_FILE_V5 = 5;
 
     private static final String ENCRYPTION_MECHANISM = "AES/CBC/PKCS5Padding";
     private static final int PBKDF2_HASH_ROUNDS = 10000;
@@ -68,7 +69,7 @@ public class AndroidBackup {
                 System.err.println("Version: " + versionStr);
             }
             int version = Integer.parseInt(versionStr);
-            if (version < BACKUP_FILE_V1 || version > BACKUP_FILE_V4) {
+            if (version < BACKUP_FILE_V1 || version > BACKUP_FILE_V5) {
                 throw new IllegalArgumentException(
                         "Don't know how to process version " + versionStr);
             }
@@ -88,7 +89,7 @@ public class AndroidBackup {
                 isEncrypted = true;
 
                 if (Cipher.getMaxAllowedKeyLength("AES") < MASTER_KEY_SIZE) {
-                    System.out.println("WARNING: Maximum allowed key-length seems smaller than needed. " +
+                    System.err.println("WARNING: Maximum allowed key-length seems smaller than needed. " +
                             "Please check that unlimited strength cryptography is available, see README.md for details");
                 }
 
@@ -211,7 +212,7 @@ public class AndroidBackup {
                     bytesRead = inf == null ? totalRead : inf.getBytesRead();
                     currentPercent = Math.round(bytesRead / fileSize * 100);
                     if (currentPercent != percentDone) {
-                        System.out.print(String.format("%.0f%% ", currentPercent));
+                        System.err.print(String.format("%.0f%% ", currentPercent));
                         percentDone = currentPercent;
                     }
                 }
