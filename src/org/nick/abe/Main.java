@@ -7,7 +7,7 @@ import org.bouncycastle.jce.provider.BouncyCastleProvider;
 
 public class Main {
 
-    public static String VERSION = "v 1.4.0";
+    public static String VERSION = "v 1.5.0";
 
     public static void main(String[] args) {
         Security.addProvider(new BouncyCastleProvider());
